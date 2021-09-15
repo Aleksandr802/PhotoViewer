@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (5.4.3)
+  - Kingfisher (6.3.1)
+  - UnsplashPhotoPicker (1.2.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.4)
+  - Kingfisher
+  - UnsplashPhotoPicker (~> 1.2)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Kingfisher
+    - UnsplashPhotoPicker
+
+SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  UnsplashPhotoPicker: 09400fc1e84dfd04144fa8b204135e6bd2bc5bb2
+
+PODFILE CHECKSUM: e325887339bde3430b8412b9e482f464ea195cb0
+
+COCOAPODS: 1.11.1
