@@ -14,15 +14,14 @@ class PhotoViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBAction func unwindToMain(segue: UIStoryboardSegue){
-        
     }
     
     private var photos: [Photo] = []
     private var searchPhotos: [Photo] = []
-    var page = 1
-    var fetchingMore = false
-    var activityIndiator : UIActivityIndicatorView?
-    var isSearching = false
+    private var page = 0
+    private var fetchingMore = false
+    private var spinner : UIActivityIndicatorView?
+    private var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,50 +31,33 @@ class PhotoViewController: UIViewController {
         self.collectionView.register(UINib(nibName: "PhotosCell", bundle: nil), forCellWithReuseIdentifier: "PhotosCell")
         self.collectionView.register(UINib(nibName: "LoadingCell", bundle: nil), forCellWithReuseIdentifier: "LoadingCell")
         
-        activityIndiator = UIActivityIndicatorView(frame: CGRect(x: self.view.frame.midX - 15, y: self.view.frame.height - 140, width: 30, height: 30))
-        activityIndiator?.style = .large
-        activityIndiator?.color = UIColor.white
-        activityIndiator?.hidesWhenStopped = true
-        activityIndiator?.backgroundColor = .clear
-        activityIndiator?.layer.cornerRadius = 15
-        self.view.addSubview(activityIndiator!)
-        self.view.bringSubviewToFront(activityIndiator!)
+        spinner = UIActivityIndicatorView(frame: CGRect(x: self.view.frame.midX - 15, y: self.view.frame.height - 140, width: 30, height: 30))
+        spinner?.style = .large
+        spinner?.color = UIColor.white
+        spinner?.hidesWhenStopped = true
+        spinner?.backgroundColor = .clear
+        spinner?.layer.cornerRadius = 15
+        self.view.addSubview(spinner!)
+        self.view.bringSubviewToFront(spinner!)
         
         self.fetchData(page: 1)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        
-        if (offsetY > contentHeight - scrollView.frame.height) && (!fetchingMore && page < 90) && !self.isSearching {
-            activityIndiator?.startAnimating()
-            self.view.bringSubviewToFront(activityIndiator!)
-            page += 1
-            print(page)
-            fetchData(page: page)
-        } else if (offsetY < 0.0) && (!fetchingMore && page > 1) && !self.isSearching {
-            activityIndiator?.startAnimating()
-            self.view.bringSubviewToFront(activityIndiator!)
-            page -= 1
-            print(page)
-            fetchData(page: page)
-        } else {
-            return
-        }
-        
-        self.collectionView?.reloadData()
-    }
-    
-    private func fetchData(page: Int, limit: Int = 30) {
-        fetchingMore = true
+    private func fetchData(page: Int, limit: Int = 10) {
+        spinner?.startAnimating()
+        self.view.bringSubviewToFront(spinner!)
         let params = "page=" + "\(page)" + "&limit=" + "\(limit)"
-        AF.request(basicQueryUrl + params, method: .get).responseDecodable(of: [Photo].self) { [weak self] response in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                self?.photos = response.value ?? []
+        
+        if !fetchingMore {
+            fetchingMore = true
+            AF.request(basicQueryUrl + params, method: .get).responseDecodable(of: [Photo].self) { [weak self] response in
+                guard self?.isSearching == false else {return}
+                self?.page += 1
+                print(page)
+                self?.photos.append(contentsOf: response.value ?? [])
                 self?.searchPhotos = self?.photos ?? []
-                self?.fetchingMore = false
                 self?.collectionView.reloadData()
+                self?.fetchingMore = false
             }
         }
     }
@@ -83,6 +65,7 @@ class PhotoViewController: UIViewController {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.photos.removeAll()
         self.isSearching = true
+        
         for item in self.searchPhotos {
             if item.author.lowercased().contains(searchBar.text!.lowercased()) {
                 self.photos.append(item)
@@ -97,7 +80,7 @@ class PhotoViewController: UIViewController {
         }
         self.collectionView?.reloadData()
     }
-
+    
 }
 
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
@@ -113,7 +96,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCell", for: indexPath) as! PhotosCell
         cell.photo = photos[indexPath.item]
-        activityIndiator?.stopAnimating()
+        spinner?.stopAnimating()
         return cell
     }
     
@@ -133,5 +116,10 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let searchView: UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SearchBar", for: indexPath)
         return searchView
     }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row + 1 == photos.count {
+            fetchData(page: page)
+        }
         
+    }
 }
