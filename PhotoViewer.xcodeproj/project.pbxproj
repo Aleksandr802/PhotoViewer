@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9E6333CE38E21A1A5DC3AD2E /* libPods-PhotoViewer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6971E94FC7F02FA7DFEBD08 /* libPods-PhotoViewer.a */; };
+		FA5C4D3626F320D90084A119 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C4D3526F320D90084A119 /* SearchBarView.swift */; };
 		FA62198E26B2C62800A88430 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62198D26B2C62800A88430 /* AppDelegate.swift */; };
 		FA62199026B2C62800A88430 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62198F26B2C62800A88430 /* SceneDelegate.swift */; };
 		FA62199226B2C62800A88430 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62199126B2C62800A88430 /* PhotoViewController.swift */; };
@@ -25,6 +26,7 @@
 		3208EC8C6A9CF0F403160EF6 /* Pods-PhotoViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoViewer.release.xcconfig"; path = "Target Support Files/Pods-PhotoViewer/Pods-PhotoViewer.release.xcconfig"; sourceTree = "<group>"; };
 		683851BD48B1EF7BDD5EB51F /* Pods-PhotoViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoViewer.debug.xcconfig"; path = "Target Support Files/Pods-PhotoViewer/Pods-PhotoViewer.debug.xcconfig"; sourceTree = "<group>"; };
 		C6971E94FC7F02FA7DFEBD08 /* libPods-PhotoViewer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotoViewer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA5C4D3526F320D90084A119 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		FA62198A26B2C62800A88430 /* PhotoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA62198D26B2C62800A88430 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA62198F26B2C62800A88430 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA5C4D3826F3260F0084A119 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA5C4D3526F320D90084A119 /* SearchBarView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FA62198126B2C62800A88430 = {
 			isa = PBXGroup;
 			children = (
@@ -90,14 +100,15 @@
 		FA62198C26B2C62800A88430 /* PhotoViewer */ = {
 			isa = PBXGroup;
 			children = (
+				FA5C4D3826F3260F0084A119 /* View */,
 				FA8E19D626ECC4A000C4D007 /* Model */,
 				FA8E19CD26EC9E8B00C4D007 /* Cell */,
-				FA62198D26B2C62800A88430 /* AppDelegate.swift */,
-				FA62198F26B2C62800A88430 /* SceneDelegate.swift */,
 				FA62199126B2C62800A88430 /* PhotoViewController.swift */,
 				FA782EBD26F2518600021B3E /* OnePhotoViewController.swift */,
-				FAFF665926ECD726003499C1 /* UIImageViewExtension.swift */,
 				FA62199326B2C62800A88430 /* Main.storyboard */,
+				FAFF665926ECD726003499C1 /* UIImageViewExtension.swift */,
+				FA62198D26B2C62800A88430 /* AppDelegate.swift */,
+				FA62198F26B2C62800A88430 /* SceneDelegate.swift */,
 				FA62199626B2C62900A88430 /* Assets.xcassets */,
 				FA62199826B2C62900A88430 /* LaunchScreen.storyboard */,
 				FA62199B26B2C62900A88430 /* Info.plist */,
@@ -223,6 +234,7 @@
 				FA62199226B2C62800A88430 /* PhotoViewController.swift in Sources */,
 				FAFF665A26ECD726003499C1 /* UIImageViewExtension.swift in Sources */,
 				FA62198E26B2C62800A88430 /* AppDelegate.swift in Sources */,
+				FA5C4D3626F320D90084A119 /* SearchBarView.swift in Sources */,
 				FA62199026B2C62800A88430 /* SceneDelegate.swift in Sources */,
 				FA8E19D826ECC4C200C4D007 /* Photo.swift in Sources */,
 				FA782EBE26F2518600021B3E /* OnePhotoViewController.swift in Sources */,

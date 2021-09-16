@@ -22,28 +22,18 @@
                                 <rect key="frame" x="-15" y="0.0" width="454" height="896"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <searchBar contentMode="redraw" barStyle="black" placeholder="search" translatesAutoresizingMaskIntoConstraints="NO" id="xZW-HK-XeL">
-                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                            </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a3j-G1-Tw2">
-                                <rect key="frame" x="0.0" y="139" width="414" height="723"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="728"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="aWD-2T-YG7">
                                     <size key="itemSize" width="180" height="180"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="PhotosCell" id="88m-e4-SzM">
-                                        <rect key="frame" x="107" y="5" width="200" height="200"/>
+                                        <rect key="frame" x="107" y="55" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="c5w-2Q-IaU">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -53,11 +43,44 @@
                                         <size key="customSize" width="200" height="200"/>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SearchBar" id="A60-ct-YMT" customClass="SearchBarView" customModule="PhotoViewer" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <searchBar contentMode="redraw" barStyle="black" placeholder="search" translatesAutoresizingMaskIntoConstraints="NO" id="xZW-HK-XeL">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="aRi-tO-6pE"/>
+                                            </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <scopeButtonTitles>
+                                                <string>Title</string>
+                                                <string>Title</string>
+                                            </scopeButtonTitles>
+                                            <connections>
+                                                <outlet property="delegate" destination="BYZ-38-t0r" id="8Fm-Mp-z6L"/>
+                                            </connections>
+                                        </searchBar>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="xZW-HK-XeL" firstAttribute="leading" secondItem="A60-ct-YMT" secondAttribute="leading" id="Z88-0N-SRt"/>
+                                        <constraint firstAttribute="trailing" secondItem="xZW-HK-XeL" secondAttribute="trailing" id="dJr-5s-Fqh"/>
+                                        <constraint firstItem="xZW-HK-XeL" firstAttribute="top" secondItem="A60-ct-YMT" secondAttribute="top" id="heF-vb-xAn"/>
+                                        <constraint firstAttribute="bottom" secondItem="xZW-HK-XeL" secondAttribute="bottom" id="jqQ-JK-ZLh"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="searchBar" destination="xZW-HK-XeL" id="cQh-YA-hsq"/>
+                                    </connections>
+                                </collectionReusableView>
                             </collectionView>
-                            <tabBar alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="JMQ-0o-R4Z">
-                                <rect key="frame" x="0.0" y="847" width="414" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <tabBar alpha="0.75" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="JMQ-0o-R4Z">
+                                <rect key="frame" x="0.0" y="816" width="414" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="o6a-uE-wFF"/>
+                                </constraints>
                                 <items>
                                     <tabBarItem systemItem="favorites" id="Y92-HO-hZK"/>
                                     <tabBarItem systemItem="more" id="TXd-Hj-EPg"/>
@@ -69,19 +92,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="a3j-G1-Tw2" firstAttribute="top" secondItem="xZW-HK-XeL" secondAttribute="bottom" id="CVM-5f-Nxs"/>
-                            <constraint firstItem="xZW-HK-XeL" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="DV3-Wu-dzA"/>
-                            <constraint firstItem="a3j-G1-Tw2" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="OBs-PP-Bn2"/>
-                            <constraint firstItem="a3j-G1-Tw2" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="h04-IO-Kh1"/>
-                            <constraint firstItem="xZW-HK-XeL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="s10-Tg-oJc"/>
-                            <constraint firstItem="xZW-HK-XeL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="sPQ-Sb-Drf"/>
-                            <constraint firstItem="a3j-G1-Tw2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="soQ-Yb-eHL"/>
+                            <constraint firstItem="JMQ-0o-R4Z" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="EsR-Ym-vST"/>
+                            <constraint firstItem="JMQ-0o-R4Z" firstAttribute="top" secondItem="a3j-G1-Tw2" secondAttribute="bottom" id="kzS-Da-9dX"/>
+                            <constraint firstItem="JMQ-0o-R4Z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ojF-HR-AcR"/>
+                            <constraint firstAttribute="bottom" secondItem="JMQ-0o-R4Z" secondAttribute="bottom" id="tRb-BM-dSB"/>
+                            <constraint firstItem="a3j-G1-Tw2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tt0-5I-ITt"/>
+                            <constraint firstItem="a3j-G1-Tw2" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="wgg-BC-TEe"/>
+                            <constraint firstItem="a3j-G1-Tw2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zPR-7u-3Ay"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WFr-Ki-v3k"/>
                     <connections>
                         <outlet property="collectionView" destination="a3j-G1-Tw2" id="xsS-nD-4cs"/>
-                        <outlet property="searchBar" destination="xZW-HK-XeL" id="7yA-Yh-g1V"/>
                         <segue destination="lDY-03-ZxH" kind="showDetail" identifier="OnePhoto" id="qwe-K6-AHX"/>
                     </connections>
                 </viewController>
