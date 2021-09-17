@@ -18,7 +18,7 @@ class PhotoViewController: UIViewController {
     
     private var photos: [Photo] = []
     private var searchPhotos: [Photo] = []
-    private var page = 0
+    private var page = 1
     private var fetchingMore = false
     private var spinner : UIActivityIndicatorView?
     private var isSearching = false
@@ -57,7 +57,9 @@ class PhotoViewController: UIViewController {
                 self?.photos.append(contentsOf: response.value ?? [])
                 self?.searchPhotos = self?.photos ?? []
                 self?.collectionView.reloadData()
-                self?.fetchingMore = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                    self?.fetchingMore = false
+                }
             }
         }
     }
@@ -116,10 +118,10 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let searchView: UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SearchBar", for: indexPath)
         return searchView
     }
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row + 1 == photos.count {
             fetchData(page: page)
         }
-        
     }
 }
