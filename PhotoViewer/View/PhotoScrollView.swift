@@ -10,7 +10,6 @@ import UIKit
 class PhotoScrollView: UIScrollView, UIScrollViewDelegate {
 
     var photoZoomView = UIImageView()
-    
     var imageZoom = UIImage()
     
     override init(frame: CGRect) {
@@ -91,6 +90,35 @@ class PhotoScrollView: UIScrollView, UIScrollViewDelegate {
         
         photoZoomView.frame = frameToCenter
     }
+    
+    @objc func handleDoubleTap(_ recognizer: UITapGestureRecognizer) {
+        let scale = min(self.zoomScale * 2, self.maximumZoomScale)
+
+        if scale != self.zoomScale { // zoom in
+            let point = recognizer.location(in: photoZoomView)
+
+            let scrollSize = self.frame.size
+            let size = CGSize(width: scrollSize.width / self.maximumZoomScale,
+                              height: scrollSize.height / self.maximumZoomScale)
+            let origin = CGPoint(x: point.x - size.width / 2,
+                                 y: point.y - size.height / 2)
+            self.zoom(to:CGRect(origin: origin, size: size), animated: true)
+        } else if self.zoomScale == 1 { //zoom out
+            self.zoom(to: zoomRectForScale(scale: self.maximumZoomScale, center: recognizer.location(in: photoZoomView)), animated: true)
+        }
+    }
+
+    func zoomRectForScale(scale: CGFloat, center: CGPoint) -> CGRect {
+        var zoomRect = CGRect.zero
+        zoomRect.size.height = photoZoomView.frame.size.height / scale
+        zoomRect.size.width  = photoZoomView.frame.size.width  / scale
+        let newCenter = self.convert(center, from: photoZoomView)
+        zoomRect.origin.x = newCenter.x - (zoomRect.size.width / 2.0)
+        zoomRect.origin.y = newCenter.y - (zoomRect.size.height / 2.0)
+        return zoomRect
+    }
+    
+    //MARK: - UIScrollViewDelegate
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.photoZoomView

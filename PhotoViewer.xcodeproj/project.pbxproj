@@ -15,7 +15,6 @@
 		FA62199526B2C62800A88430 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA62199326B2C62800A88430 /* Main.storyboard */; };
 		FA62199726B2C62900A88430 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA62199626B2C62900A88430 /* Assets.xcassets */; };
 		FA62199A26B2C62900A88430 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA62199826B2C62900A88430 /* LaunchScreen.storyboard */; };
-		FA782EBE26F2518600021B3E /* OnePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA782EBD26F2518600021B3E /* OnePhotoViewController.swift */; };
 		FA7A327B26F4DD6100A3C6BC /* PhotoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A327A26F4DD6100A3C6BC /* PhotoScrollView.swift */; };
 		FA7A327D26F4E06400A3C6BC /* PhotoZoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A327C26F4E06400A3C6BC /* PhotoZoomViewController.swift */; };
 		FA8E19D426ECAE1C00C4D007 /* PhotosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E19D226ECAE1C00C4D007 /* PhotosCell.swift */; };
@@ -37,7 +36,6 @@
 		FA62199626B2C62900A88430 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA62199926B2C62900A88430 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA62199B26B2C62900A88430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA782EBD26F2518600021B3E /* OnePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePhotoViewController.swift; sourceTree = "<group>"; };
 		FA7A327A26F4DD6100A3C6BC /* PhotoScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoScrollView.swift; sourceTree = "<group>"; };
 		FA7A327C26F4E06400A3C6BC /* PhotoZoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoZoomViewController.swift; sourceTree = "<group>"; };
 		FA8E19D226ECAE1C00C4D007 /* PhotosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCell.swift; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 				FA8E19D626ECC4A000C4D007 /* Model */,
 				FA8E19CD26EC9E8B00C4D007 /* Cell */,
 				FA62199126B2C62800A88430 /* PhotoViewController.swift */,
-				FA782EBD26F2518600021B3E /* OnePhotoViewController.swift */,
 				FA7A327C26F4E06400A3C6BC /* PhotoZoomViewController.swift */,
 				FA62199326B2C62800A88430 /* Main.storyboard */,
 				FAFF665926ECD726003499C1 /* UIImageViewExtension.swift */,
@@ -245,7 +242,6 @@
 				FA5C4D3626F320D90084A119 /* SearchBarView.swift in Sources */,
 				FA62199026B2C62800A88430 /* SceneDelegate.swift in Sources */,
 				FA8E19D826ECC4C200C4D007 /* Photo.swift in Sources */,
-				FA782EBE26F2518600021B3E /* OnePhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

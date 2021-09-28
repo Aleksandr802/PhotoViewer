@@ -13,8 +13,6 @@ class PhotoViewController: UIViewController {
     let basicQueryUrl = "https://picsum.photos/v2/list?"
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBAction func unwindToMain(segue: UIStoryboardSegue){
-    }
     
     private var photos: [Photo] = []
     private var searchPhotos: [Photo] = []
@@ -26,6 +24,7 @@ class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Photo Viewer"
+        self.navigationItem.backButtonTitle = "back"
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "PhotosCell", bundle: nil), forCellWithReuseIdentifier: "PhotosCell")
@@ -43,6 +42,11 @@ class PhotoViewController: UIViewController {
         self.fetchData(page: 1)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.fetchingMore = false
+    }
+    
     private func fetchData(page: Int, limit: Int = 10) {
         spinner?.startAnimating()
         self.view.bringSubviewToFront(spinner!)
@@ -56,8 +60,8 @@ class PhotoViewController: UIViewController {
                 print(page)
                 self?.photos.append(contentsOf: response.value ?? [])
                 self?.searchPhotos = self?.photos ?? []
-                self?.collectionView.reloadData()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    self?.collectionView.reloadData()
                     self?.fetchingMore = false
                 }
             }
@@ -71,8 +75,10 @@ class PhotoViewController: UIViewController {
         for item in self.searchPhotos {
             if item.author.lowercased().contains(searchBar.text!.lowercased()) {
                 self.photos.append(item)
+                spinner?.stopAnimating()
             } else if item.id.contains(searchBar.text!) {
                 self.photos.append(item)
+                spinner?.stopAnimating()
             }
         }
         

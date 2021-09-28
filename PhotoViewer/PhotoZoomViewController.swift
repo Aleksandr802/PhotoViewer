@@ -25,7 +25,8 @@ class PhotoZoomViewController: UIViewController {
         configurePhotoScrollView()
         self.imageUrl = photo?.download_url ?? ""
         self.navigationItem.title = photo?.id
-        self.photoScrollView.set(imageUrl: imageUrl)
+        self.photoScrollView.set(imageUrl: self.imageUrl)
+        photoScrollView.reloadInputViews()
     }
     
     func configurePhotoScrollView() {
